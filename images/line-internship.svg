@@ -1,0 +1,35 @@
+<svg width="640" height="480" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">LINE Internship Highlight</title>
+  <desc id="desc">Abstract illustration representing a data internship at LINE Taiwan.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00C300" />
+      <stop offset="100%" stop-color="#0F9B0F" />
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#E8FEE8" stop-opacity="0.98" />
+    </linearGradient>
+    <clipPath id="roundedRect">
+      <rect x="80" y="110" width="480" height="270" rx="32" ry="32" />
+    </clipPath>
+  </defs>
+  <rect width="640" height="480" fill="url(#bg)" />
+  <g clip-path="url(#roundedRect)">
+    <rect x="80" y="110" width="480" height="270" fill="url(#card)" />
+    <g transform="translate(100 140)">
+      <circle cx="80" cy="80" r="64" fill="#00B900" opacity="0.9" />
+      <path d="M60 74 L80 94 L118 56" stroke="#ffffff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    </g>
+    <g transform="translate(220 160)" fill="#14632B">
+      <text font-family="'Poppins', 'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="600">LINE Taiwan Limited</text>
+      <text font-family="'Poppins', 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="500" y="36">Data &amp; Operation Intern</text>
+      <text font-family="'Poppins', 'Helvetica Neue', Arial, sans-serif" font-size="16" y="72" fill="#2A7C44">Smart Channel analytics · Automation · Collaboration</text>
+    </g>
+    <g transform="translate(220 240)" fill="#14632B">
+      <text font-family="'Poppins', 'Helvetica Neue', Arial, sans-serif" font-size="15" y="0">Automated reporting pipelines with Python, SQL, and Excel</text>
+      <text font-family="'Poppins', 'Helvetica Neue', Arial, sans-serif" font-size="15" y="28">Enabled data-driven decisions for cross-functional partners</text>
+      <text font-family="'Poppins', 'Helvetica Neue', Arial, sans-serif" font-size="15" y="56">Strengthened storytelling from large-scale customer insights</text>
+    </g>
+  </g>
+</svg>
