@@ -10034,5 +10034,15 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+.news_highlight .highlight_media1 img {
+  width: 100%;
+  max-width: 200px;       /* 可自行調整最大寬度，例如 300~400px */
+  aspect-ratio: 1 / 1;    /* 改成正方形比例 */
+  object-fit: cover;      /* 裁切並保持中心構圖 */
+  border-radius: 16px;    /* 圓角 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* 淡陰影 */
+  display: block;
+  margin: 0 auto;         /* 置中 */
+}
 }
 /*# sourceMappingURL=bootstrap.css.map */
