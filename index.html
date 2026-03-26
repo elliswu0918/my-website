@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Personal academic website with bilingual content." />
-  <title>Academic Website</title>
+  <meta name="description" content="Minimal Japanese-inspired academic personal website." />
+  <title>Academic Portfolio</title>
   <style>
     :root {
-      --bg: #f6f4ef;
-      --paper: #fffdfa;
-      --ink: #2c2c2c;
-      --ink-soft: #66645e;
-      --line: #ddd8cd;
-      --primary: #667a69;
-      --secondary: #8a7868;
-      --radius: 12px;
-      --shadow: 0 6px 20px rgba(44, 44, 44, 0.06);
-      --container: 1120px;
-      --sans: "Inter", "Noto Sans TC", "PingFang TC", system-ui, sans-serif;
-      --serif: "Noto Serif TC", "Source Serif 4", Georgia, serif;
+      --bg: #f3f0e8;
+      --panel: #fcfbf8;
+      --ink: #1f1f1f;
+      --muted: #666257;
+      --line: #d9d2c3;
+      --sage: #657564;
+      --brown: #7c6a59;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(31, 31, 31, 0.06);
+      --container: 1180px;
+      --serif: "Noto Serif TC", "Noto Serif JP", "Times New Roman", serif;
+      --sans: "Inter", "Noto Sans TC", "Noto Sans JP", system-ui, sans-serif;
     }
 
     * { box-sizing: border-box; }
@@ -26,260 +26,334 @@
 
     body {
       margin: 0;
-      color: var(--ink);
       background: var(--bg);
+      color: var(--ink);
       font-family: var(--sans);
-      line-height: 1.75;
+      line-height: 1.8;
+      letter-spacing: 0.01em;
     }
 
     a { color: inherit; text-decoration: none; }
 
     .container {
       width: min(92%, var(--container));
-      margin-inline: auto;
+      margin: 0 auto;
     }
 
-    .site-header {
+    .topbar {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 30;
       border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(10px);
-      background: color-mix(in srgb, var(--bg) 90%, white);
+      backdrop-filter: blur(8px);
+      background: color-mix(in srgb, var(--bg) 88%, #fff);
     }
 
-    .header-row {
-      min-height: 72px;
+    .topbar-inner {
+      min-height: 74px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 1rem;
       flex-wrap: wrap;
-      padding: 10px 0;
+      padding: 0.55rem 0;
     }
 
-    .site-name {
+    .brand {
       font-family: var(--serif);
-      font-size: 1.1rem;
-      letter-spacing: 0.03em;
+      font-size: 1.12rem;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: baseline;
+      gap: 0.7rem;
     }
 
-    .nav-links {
+    .brand small {
+      font-size: 0.76rem;
+      color: var(--muted);
+      font-family: var(--sans);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav {
       display: flex;
       align-items: center;
-      gap: 0.9rem;
-      color: var(--ink-soft);
-      font-size: 0.94rem;
+      gap: 0.95rem;
+      color: var(--muted);
       flex-wrap: wrap;
+      font-size: 0.93rem;
     }
 
-    .nav-links a { padding: 0.25rem 0.2rem; }
-    .nav-links a:hover { color: var(--ink); }
+    .nav a:hover { color: var(--ink); }
 
-    .lang-control {
+    .lang-switch {
       display: inline-flex;
+      gap: 4px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: var(--paper);
       padding: 4px;
-      margin-left: 0.2rem;
+      background: var(--panel);
     }
 
-    .lang-control button {
+    .lang-switch button {
       border: 0;
       background: transparent;
       border-radius: 999px;
-      padding: 0.38rem 0.72rem;
+      padding: 0.34rem 0.72rem;
       font-size: 0.82rem;
-      color: var(--ink-soft);
+      color: var(--muted);
       cursor: pointer;
     }
 
-    .lang-control button.active {
-      background: var(--primary);
+    .lang-switch button.active {
+      background: var(--sage);
       color: #fff;
     }
 
-    main { padding: 2rem 0 4rem; }
-
     .hero {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 1.4rem;
-      align-items: stretch;
-    }
-
-    .card {
-      background: var(--paper);
+      margin-top: 1rem;
       border: 1px solid var(--line);
       border-radius: var(--radius);
+      background: linear-gradient(135deg, #faf8f3 0%, #f5f2ea 60%, #f0ece2 100%);
       box-shadow: var(--shadow);
-      padding: 1.3rem;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      min-height: 440px;
+    }
+
+    .hero-content {
+      padding: clamp(1.3rem, 3.5vw, 3rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .jp-mark {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 7vw, 5rem);
+      line-height: 1;
+      letter-spacing: 0.08em;
+      color: color-mix(in srgb, var(--ink) 80%, transparent);
+      margin: 0;
     }
 
     .hero h1 {
       margin: 0;
       font-family: var(--serif);
-      font-size: clamp(2rem, 4vw, 3.1rem);
+      font-size: clamp(1.9rem, 4.4vw, 3.5rem);
       line-height: 1.25;
+      max-width: 16ch;
     }
 
-    .hero-subtitle {
-      color: var(--ink-soft);
-      margin-top: 0.35rem;
-      font-size: 1.02rem;
-    }
-
-    .hero-statement {
-      margin-top: 0.95rem;
-      font-size: 1.04rem;
+    .hero p {
+      margin: 0;
       max-width: 62ch;
+      color: var(--muted);
+      font-size: 1rem;
     }
 
-    .button-row {
-      margin-top: 1rem;
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.65rem;
+      gap: 0.7rem;
+      margin-top: 0.3rem;
     }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 0.58rem 1.05rem;
-      font-size: 0.9rem;
+      border: 1px solid var(--line);
       background: #fff;
+      padding: 0.56rem 1rem;
+      font-size: 0.89rem;
     }
 
     .btn.primary {
-      background: var(--primary);
+      background: var(--ink);
+      border-color: var(--ink);
       color: #fff;
-      border-color: var(--primary);
     }
 
-    .hero-meta ul {
-      margin: 0;
-      padding-left: 1.1rem;
-      color: var(--ink-soft);
+    .hero-side {
+      border-left: 1px solid var(--line);
+      background: repeating-linear-gradient(
+        0deg,
+        #f6f2e8,
+        #f6f2e8 24px,
+        #f2eee4 24px,
+        #f2eee4 48px
+      );
+      display: grid;
+      place-items: center;
+      padding: 1rem;
     }
 
-    section { margin-top: 1.2rem; }
+    .hero-note {
+      background: rgba(255,255,255,0.85);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1rem;
+      max-width: 260px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    section { margin-top: 1rem; }
+
+    .section-wrap {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.1rem;
+    }
 
     .section-head {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       gap: 0.8rem;
-      margin-bottom: 0.65rem;
+      margin-bottom: 0.9rem;
+      flex-wrap: wrap;
     }
 
     .section-head h2 {
       margin: 0;
       font-family: var(--serif);
-      font-size: clamp(1.35rem, 2.7vw, 1.95rem);
+      font-size: clamp(1.3rem, 2.8vw, 2rem);
     }
 
     .section-head p {
       margin: 0;
-      color: var(--ink-soft);
-      font-size: 0.92rem;
+      color: var(--muted);
+      font-size: 0.9rem;
     }
 
-    .grid-3 {
+    .research-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.8rem;
+      gap: 0.75rem;
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.8rem;
+    .tile {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.9rem;
+      background: #fff;
     }
 
-    .topic h3,
-    .teaching-item h3 {
+    .tile h3 {
       margin: 0;
       font-size: 1rem;
     }
 
-    .topic p,
-    .teaching-item p,
-    .pub-item p,
-    .news-item p {
+    .tile p {
       margin: 0.45rem 0 0;
-      color: var(--ink-soft);
-      font-size: 0.94rem;
+      color: var(--muted);
+      font-size: 0.93rem;
     }
 
-    .pub-item {
-      padding: 1rem;
-      border-radius: var(--radius);
+    .timeline {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 0.8rem;
       border: 1px solid var(--line);
+      border-radius: 10px;
       background: #fff;
+      padding: 0.8rem;
     }
 
-    .pub-item + .pub-item { margin-top: 0.55rem; }
+    .year-tag {
+      font-family: var(--serif);
+      color: var(--brown);
+      font-size: 1.1rem;
+      line-height: 1.2;
+    }
+
+    .timeline-item strong { font-size: 0.98rem; }
+
+    .timeline-item p {
+      margin: 0.3rem 0 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
 
     .pub-links {
-      margin-top: 0.45rem;
       display: flex;
       gap: 0.8rem;
-      font-size: 0.86rem;
-      color: var(--secondary);
+      margin-top: 0.45rem;
+      font-size: 0.84rem;
+      color: var(--brown);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
     }
 
     .news-list { display: grid; gap: 0.55rem; }
 
     .news-item {
-      padding: 0.8rem 1rem;
       border: 1px solid var(--line);
       border-radius: 10px;
       background: #fff;
-    }
-
-    .contact-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      color: var(--ink-soft);
-      font-size: 0.92rem;
+      padding: 0.75rem 0.9rem;
+      color: var(--muted);
+      font-size: 0.93rem;
     }
 
     footer {
+      margin: 1rem 0 2.2rem;
       border-top: 1px solid var(--line);
-      margin-top: 1.4rem;
-      padding-top: 1rem;
+      padding-top: 0.95rem;
+      color: var(--muted);
+      font-size: 0.91rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem;
     }
 
-    @media (max-width: 940px) {
-      .hero { grid-template-columns: 1fr; }
-      .grid-3 { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 920px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-side { border-left: 0; border-top: 1px solid var(--line); }
+      .research-grid { grid-template-columns: 1fr 1fr; }
+      .two-col { grid-template-columns: 1fr; }
     }
 
-    @media (max-width: 700px) {
-      .grid-3,
-      .grid-2 { grid-template-columns: 1fr; }
-      .nav-links { font-size: 0.88rem; }
+    @media (max-width: 680px) {
+      .research-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; }
+      .year-tag { font-size: 0.95rem; }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-row">
-      <div class="site-name" id="siteName">{{Your Name}}</div>
-      <nav class="nav-links">
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <span id="brandName">{{Your Name}}</span>
+        <small data-i18n="brand_sub"></small>
+      </div>
+      <nav class="nav">
         <a href="#home" data-i18n="nav_home"></a>
         <a href="#research" data-i18n="nav_research"></a>
         <a href="#publications" data-i18n="nav_publications"></a>
         <a href="#teaching" data-i18n="nav_teaching"></a>
         <a href="#news" data-i18n="nav_news"></a>
         <a href="#contact" data-i18n="nav_contact"></a>
-        <div class="lang-control" aria-label="language switch">
+        <div class="lang-switch" aria-label="language switch">
           <button type="button" data-lang="zh">中文</button>
           <button type="button" data-lang="en">EN</button>
         </div>
@@ -287,227 +361,226 @@
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero" id="home">
-      <article class="card">
-        <h1 id="heroName">{{Your Name}}</h1>
-        <p class="hero-subtitle" id="heroTitle"></p>
-        <p class="hero-statement" id="heroStatement"></p>
-        <div class="button-row">
-          <a class="btn primary" href="#publications" data-i18n="cta_publications"></a>
-          <a class="btn" href="#" data-i18n="cta_cv"></a>
-          <a class="btn" href="#contact" data-i18n="cta_contact"></a>
+  <main class="container" id="home">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <p class="jp-mark" id="heroKanji">研究</p>
+          <h1 id="heroName">{{Your Name}}</h1>
+          <p id="heroIntro"></p>
+          <div class="hero-actions">
+            <a href="#publications" class="btn primary" data-i18n="cta_pubs"></a>
+            <a href="#contact" class="btn" data-i18n="cta_contact"></a>
+            <a href="#" class="btn" data-i18n="cta_cv"></a>
+          </div>
         </div>
-      </article>
-      <aside class="card hero-meta">
-        <h2 data-i18n="meta_title"></h2>
-        <ul>
-          <li id="meta1"></li>
-          <li id="meta2"></li>
-          <li id="meta3"></li>
-          <li id="meta4"></li>
-        </ul>
-      </aside>
+        <aside class="hero-side">
+          <div class="hero-note" id="heroNote"></div>
+        </aside>
+      </div>
     </section>
 
-    <section id="research">
+    <section id="research" class="section-wrap">
       <div class="section-head">
         <h2 data-i18n="research_title"></h2>
-        <p data-i18n="research_subtitle"></p>
+        <p data-i18n="research_sub"></p>
       </div>
-      <div class="grid-3">
-        <article class="card topic">
-          <h3 id="topic1"></h3>
-          <p id="topic1_desc"></p>
+      <div class="research-grid">
+        <article class="tile">
+          <h3 id="r1t"></h3>
+          <p id="r1d"></p>
         </article>
-        <article class="card topic">
-          <h3 id="topic2"></h3>
-          <p id="topic2_desc"></p>
+        <article class="tile">
+          <h3 id="r2t"></h3>
+          <p id="r2d"></p>
         </article>
-        <article class="card topic">
-          <h3 id="topic3"></h3>
-          <p id="topic3_desc"></p>
-        </article>
-      </div>
-    </section>
-
-    <section id="publications" class="card">
-      <div class="section-head">
-        <h2 data-i18n="publications_title"></h2>
-        <p data-i18n="publications_subtitle"></p>
-      </div>
-      <article class="pub-item">
-        <strong id="pub1_title"></strong>
-        <p id="pub1_desc"></p>
-        <div class="pub-links"><a href="#">PDF</a><a href="#">DOI</a><a href="#">Code</a></div>
-      </article>
-      <article class="pub-item">
-        <strong id="pub2_title"></strong>
-        <p id="pub2_desc"></p>
-        <div class="pub-links"><a href="#">PDF</a><a href="#">DOI</a></div>
-      </article>
-      <article class="pub-item">
-        <strong id="pub3_title"></strong>
-        <p id="pub3_desc"></p>
-        <div class="pub-links"><a href="#">PDF</a><a href="#">Project</a></div>
-      </article>
-    </section>
-
-    <section id="teaching">
-      <div class="section-head">
-        <h2 data-i18n="teaching_title"></h2>
-        <p data-i18n="teaching_subtitle"></p>
-      </div>
-      <div class="grid-2">
-        <article class="card teaching-item">
-          <h3 id="teach1"></h3>
-          <p id="teach1_desc"></p>
-        </article>
-        <article class="card teaching-item">
-          <h3 id="teach2"></h3>
-          <p id="teach2_desc"></p>
+        <article class="tile">
+          <h3 id="r3t"></h3>
+          <p id="r3d"></p>
         </article>
       </div>
     </section>
 
-    <section id="news" class="card">
+    <section id="publications" class="section-wrap">
       <div class="section-head">
-        <h2 data-i18n="news_title"></h2>
-        <p data-i18n="news_subtitle"></p>
+        <h2 data-i18n="pub_title"></h2>
+        <p data-i18n="pub_sub"></p>
       </div>
-      <div class="news-list">
-        <article class="news-item" id="news1"></article>
-        <article class="news-item" id="news2"></article>
-        <article class="news-item" id="news3"></article>
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="year-tag">2025</div>
+          <div>
+            <strong id="p1t"></strong>
+            <p id="p1d"></p>
+            <div class="pub-links"><a href="#">PDF</a><a href="#">DOI</a><a href="#">Code</a></div>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="year-tag">2024</div>
+          <div>
+            <strong id="p2t"></strong>
+            <p id="p2d"></p>
+            <div class="pub-links"><a href="#">PDF</a><a href="#">DOI</a></div>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="year-tag">2023</div>
+          <div>
+            <strong id="p3t"></strong>
+            <p id="p3d"></p>
+            <div class="pub-links"><a href="#">PDF</a><a href="#">Project</a></div>
+          </div>
+        </article>
       </div>
+    </section>
+
+    <section class="two-col">
+      <section id="teaching" class="section-wrap">
+        <div class="section-head">
+          <h2 data-i18n="teach_title"></h2>
+        </div>
+        <article class="tile">
+          <h3 id="t1t"></h3>
+          <p id="t1d"></p>
+        </article>
+        <article class="tile" style="margin-top: 0.7rem;">
+          <h3 id="t2t"></h3>
+          <p id="t2d"></p>
+        </article>
+      </section>
+
+      <section id="news" class="section-wrap">
+        <div class="section-head">
+          <h2 data-i18n="news_title"></h2>
+        </div>
+        <div class="news-list">
+          <article class="news-item" id="n1"></article>
+          <article class="news-item" id="n2"></article>
+          <article class="news-item" id="n3"></article>
+        </div>
+      </section>
     </section>
 
     <footer id="contact">
-      <div class="contact-row">
-        <div id="contactLine"></div>
-        <div id="linksLine"></div>
-      </div>
-      <div class="contact-row">
-        <div>© <span id="year"></span> <span id="copyrightName">{{Your Name}}</span></div>
-      </div>
+      <div id="contactLine"></div>
+      <div id="footerLine"></div>
+      <div>© <span id="year"></span> <span id="copyrightName">{{Your Name}}</span></div>
     </footer>
   </main>
 
   <script>
-    const translations = {
+    const i18n = {
       zh: {
         html_lang: "zh-Hant",
         page_title: "學術個人網站",
-        site_name: "{{Your Name}}",
+        brand_name: "{{Your Name}}",
+        brand_sub: "ACADEMIC PORTFOLIO",
         nav_home: "首頁",
         nav_research: "研究",
         nav_publications: "論文",
         nav_teaching: "教學",
-        nav_news: "最新消息",
+        nav_news: "消息",
         nav_contact: "聯絡",
+        hero_kanji: "研究",
         hero_name: "{{Your Name}}",
-        hero_title: "助理教授候選人｜{{Department}}｜{{University}}",
-        hero_statement: "我聚焦於資料驅動決策、人機互動與服務創新，重視研究的可解釋性、跨域整合能力與社會影響。",
-        cta_publications: "查看論文",
-        cta_cv: "下載 CV",
+        hero_intro: "{{Department}}｜{{University}}。我的研究關注人機互動、資料驅動決策與服務創新，重視方法的可解釋性與社會實作價值。",
+        hero_note: "以「留白、秩序、可信」為核心，建立兼具學術專業與日系簡約質感的個人研究網站。",
+        cta_pubs: "查看論文",
         cta_contact: "聯絡我",
-        meta_title: "學術重點",
-        meta1: "研究方法：定量分析、實驗設計、使用者研究",
-        meta2: "合作領域：AI、數位平台、公共與商業服務",
-        meta3: "關鍵字：Human-AI, Explainability, Service Science",
-        meta4: "現況：開放跨領域研究合作與學生指導",
-        research_title: "研究興趣",
-        research_subtitle: "聚焦理論深度與實務價值並重",
-        topic1: "資料驅動決策",
-        topic1_desc: "結合機器學習與統計推論，協助在不確定情境下做出更可靠的策略判斷。",
-        topic2: "人機互動與可解釋 AI",
-        topic2_desc: "研究 AI 介面如何提升信任、可理解性與實際使用效益。",
-        topic3: "服務創新與社會影響",
-        topic3_desc: "探討以人為本的服務設計如何改善公共價值與永續成果。",
-        publications_title: "代表性論文",
-        publications_subtitle: "完整列表可放置於 Publications 頁面",
-        pub1_title: "Multimodal Signals for Human-Centered Decision Support (2025)",
-        pub1_desc: "Chen, Y., {{Your Name}}, Lin, H. Journal of Service Analytics.",
-        pub2_title: "Explainable Recommender Systems in Platform Contexts (2024)",
-        pub2_desc: "{{Your Name}}, Wang, C. IEEE Access.",
-        pub3_title: "Interface Transparency and Trust in Human-AI Collaboration (2023)",
-        pub3_desc: "Hsu, P., {{Your Name}}. CHI Workshop.",
-        teaching_title: "教學與學術服務",
-        teaching_subtitle: "培育研究能力與跨域問題解決能力",
-        teach1: "教學領域",
-        teach1_desc: "資料分析、研究方法、AI 與管理決策、服務設計。",
-        teach2: "學術服務",
-        teach2_desc: "審稿、學生指導、研究工作坊與跨校合作計畫。",
+        cta_cv: "下載 CV",
+        research_title: "研究方向",
+        research_sub: "Research Areas",
+        r1t: "人機互動與可解釋 AI",
+        r1d: "探討介面透明度、解釋策略與使用者信任之間的關聯。",
+        r2t: "資料驅動決策",
+        r2d: "結合統計與機器學習方法，支援高不確定情境下的決策品質。",
+        r3t: "服務創新與社會影響",
+        r3d: "研究數位服務如何兼顧效率、公平與永續價值。",
+        pub_title: "代表性論文",
+        pub_sub: "Selected Publications",
+        p1t: "Multimodal Signals for Human-Centered Decision Support",
+        p1d: "Chen, Y., {{Your Name}}, Lin, H. Journal of Service Analytics.",
+        p2t: "Explainable Recommender Systems in Platform Contexts",
+        p2d: "{{Your Name}}, Wang, C. IEEE Access.",
+        p3t: "Interface Transparency and Decision Trust",
+        p3d: "Hsu, P., {{Your Name}}. CHI Workshop.",
+        teach_title: "教學與服務",
+        t1t: "教學領域",
+        t1d: "資料分析、研究方法、AI 與管理決策、服務設計。",
+        t2t: "學術服務",
+        t2d: "審稿、學生指導、跨校合作、研究社群經營。",
         news_title: "最新消息",
-        news_subtitle: "依時間倒序更新",
-        news1: "[2026.03] 論文入選 International Conference on Service Systems。",
-        news2: "[2026.01] 受邀於 Data & Society Seminar 進行專題演講。",
-        news3: "[2025.11] 啟動跨校 AI 與公共服務研究合作。",
+        n1: "[2026.03] 論文獲 International Conference on Service Systems 接收。",
+        n2: "[2026.01] 受邀於 Data & Society Seminar 進行演講。",
+        n3: "[2025.11] 啟動 AI 與公共服務跨域研究合作。",
         contact_line: "聯絡：your.email@university.edu",
-        links_line: "ORCID ｜ Google Scholar ｜ GitHub ｜ {{Institution}}"
+        footer_line: "ORCID ｜ Google Scholar ｜ GitHub ｜ {{Institution}}"
       },
       en: {
         html_lang: "en",
-        page_title: "Academic Website",
-        site_name: "{{Your Name}}",
+        page_title: "Academic Portfolio",
+        brand_name: "{{Your Name}}",
+        brand_sub: "ACADEMIC PORTFOLIO",
         nav_home: "Home",
         nav_research: "Research",
         nav_publications: "Publications",
         nav_teaching: "Teaching",
         nav_news: "News",
         nav_contact: "Contact",
+        hero_kanji: "研究",
         hero_name: "{{Your Name}}",
-        hero_title: "Assistant Professor Candidate | {{Department}} | {{University}}",
-        hero_statement: "My work focuses on data-driven decision-making, human-AI interaction, and service innovation, with an emphasis on explainability, interdisciplinary integration, and social impact.",
-        cta_publications: "View Publications",
-        cta_cv: "Download CV",
+        hero_intro: "{{Department}} | {{University}}. My research focuses on human-AI interaction, data-driven decision-making, and service innovation, with emphasis on explainability and societal impact.",
+        hero_note: "A minimal, structured, and credible web presence for academic communication.",
+        cta_pubs: "View Publications",
         cta_contact: "Contact",
-        meta_title: "Academic Focus",
-        meta1: "Methods: quantitative modeling, experiments, user studies",
-        meta2: "Domains: AI, digital platforms, public and business services",
-        meta3: "Keywords: Human-AI, Explainability, Service Science",
-        meta4: "Open to interdisciplinary research collaborations",
-        research_title: "Research Interests",
-        research_subtitle: "Balancing theoretical depth and practical impact",
-        topic1: "Data-Driven Decision-Making",
-        topic1_desc: "Integrating machine learning and statistical inference for robust strategy under uncertainty.",
-        topic2: "Human-AI Interaction & Explainability",
-        topic2_desc: "Studying how AI interfaces improve trust, transparency, and real-world effectiveness.",
-        topic3: "Service Innovation & Social Impact",
-        topic3_desc: "Examining how human-centered service design can generate public value and sustainability outcomes.",
-        publications_title: "Selected Publications",
-        publications_subtitle: "A full list can be added on a dedicated Publications page",
-        pub1_title: "Multimodal Signals for Human-Centered Decision Support (2025)",
-        pub1_desc: "Chen, Y., {{Your Name}}, Lin, H. Journal of Service Analytics.",
-        pub2_title: "Explainable Recommender Systems in Platform Contexts (2024)",
-        pub2_desc: "{{Your Name}}, Wang, C. IEEE Access.",
-        pub3_title: "Interface Transparency and Trust in Human-AI Collaboration (2023)",
-        pub3_desc: "Hsu, P., {{Your Name}}. CHI Workshop.",
-        teaching_title: "Teaching & Academic Service",
-        teaching_subtitle: "Building research capability and cross-domain problem-solving",
-        teach1: "Teaching Areas",
-        teach1_desc: "Data analytics, research methods, AI for management, and service design.",
-        teach2: "Academic Service",
-        teach2_desc: "Peer reviewing, student mentoring, workshops, and cross-university projects.",
+        cta_cv: "Download CV",
+        research_title: "Research Areas",
+        research_sub: "Focused on theory, method, and impact",
+        r1t: "Human-AI Interaction & Explainability",
+        r1d: "Studying transparency design, explanation strategies, and user trust.",
+        r2t: "Data-Driven Decision-Making",
+        r2d: "Combining statistical and ML approaches for robust decisions under uncertainty.",
+        r3t: "Service Innovation & Social Impact",
+        r3d: "Exploring digital service systems balancing performance, equity, and sustainability.",
+        pub_title: "Selected Publications",
+        pub_sub: "Recent representative works",
+        p1t: "Multimodal Signals for Human-Centered Decision Support",
+        p1d: "Chen, Y., {{Your Name}}, Lin, H. Journal of Service Analytics.",
+        p2t: "Explainable Recommender Systems in Platform Contexts",
+        p2d: "{{Your Name}}, Wang, C. IEEE Access.",
+        p3t: "Interface Transparency and Decision Trust",
+        p3d: "Hsu, P., {{Your Name}}. CHI Workshop.",
+        teach_title: "Teaching & Service",
+        t1t: "Teaching Areas",
+        t1d: "Data analytics, research methods, AI for management, and service design.",
+        t2t: "Academic Service",
+        t2d: "Peer review, mentoring, cross-university projects, and research communities.",
         news_title: "News",
-        news_subtitle: "Updated in reverse chronological order",
-        news1: "[Mar 2026] Paper accepted to the International Conference on Service Systems.",
-        news2: "[Jan 2026] Delivered an invited talk at the Data & Society Seminar.",
-        news3: "[Nov 2025] Started a cross-university project on AI and public services.",
+        n1: "[Mar 2026] Paper accepted to the International Conference on Service Systems.",
+        n2: "[Jan 2026] Invited talk at the Data & Society Seminar.",
+        n3: "[Nov 2025] Started a cross-disciplinary project on AI and public services.",
         contact_line: "Contact: your.email@university.edu",
-        links_line: "ORCID | Google Scholar | GitHub | {{Institution}}"
+        footer_line: "ORCID | Google Scholar | GitHub | {{Institution}}"
       }
     };
 
-    const textIds = [
-      "heroName", "heroTitle", "heroStatement", "meta1", "meta2", "meta3", "meta4", "topic1", "topic1_desc",
-      "topic2", "topic2_desc", "topic3", "topic3_desc", "pub1_title", "pub1_desc", "pub2_title", "pub2_desc",
-      "pub3_title", "pub3_desc", "teach1", "teach1_desc", "teach2", "teach2_desc", "news1", "news2", "news3",
-      "contactLine", "linksLine", "siteName", "copyrightName"
-    ];
+    const mapping = {
+      brandName: "brand_name",
+      heroKanji: "hero_kanji",
+      heroName: "hero_name",
+      heroIntro: "hero_intro",
+      heroNote: "hero_note",
+      r1t: "r1t", r1d: "r1d", r2t: "r2t", r2d: "r2d", r3t: "r3t", r3d: "r3d",
+      p1t: "p1t", p1d: "p1d", p2t: "p2t", p2d: "p2d", p3t: "p3t", p3d: "p3d",
+      t1t: "t1t", t1d: "t1d", t2t: "t2t", t2d: "t2d",
+      n1: "n1", n2: "n2", n3: "n3",
+      contactLine: "contact_line",
+      footerLine: "footer_line",
+      copyrightName: "brand_name"
+    };
 
     function applyLanguage(lang) {
-      const t = translations[lang] || translations.zh;
+      const t = i18n[lang] || i18n.zh;
       document.documentElement.lang = t.html_lang;
       document.title = t.page_title;
 
@@ -516,47 +589,13 @@
         if (t[key]) el.textContent = t[key];
       });
 
-      const map = {
-        heroName: "hero_name",
-        heroTitle: "hero_title",
-        heroStatement: "hero_statement",
-        meta1: "meta1",
-        meta2: "meta2",
-        meta3: "meta3",
-        meta4: "meta4",
-        topic1: "topic1",
-        topic1_desc: "topic1_desc",
-        topic2: "topic2",
-        topic2_desc: "topic2_desc",
-        topic3: "topic3",
-        topic3_desc: "topic3_desc",
-        pub1_title: "pub1_title",
-        pub1_desc: "pub1_desc",
-        pub2_title: "pub2_title",
-        pub2_desc: "pub2_desc",
-        pub3_title: "pub3_title",
-        pub3_desc: "pub3_desc",
-        teach1: "teach1",
-        teach1_desc: "teach1_desc",
-        teach2: "teach2",
-        teach2_desc: "teach2_desc",
-        news1: "news1",
-        news2: "news2",
-        news3: "news3",
-        contactLine: "contact_line",
-        linksLine: "links_line",
-        siteName: "site_name",
-        copyrightName: "site_name"
-      };
-
-      textIds.forEach((id) => {
-        const el = document.getElementById(id);
-        const key = map[id];
-        if (el && t[key]) el.textContent = t[key];
+      Object.entries(mapping).forEach(([id, key]) => {
+        const node = document.getElementById(id);
+        if (node && t[key]) node.textContent = t[key];
       });
 
       localStorage.setItem("preferred-lang", lang);
-      document.querySelectorAll(".lang-control button").forEach((btn) => {
+      document.querySelectorAll(".lang-switch button").forEach((btn) => {
         btn.classList.toggle("active", btn.dataset.lang === lang);
       });
     }
@@ -564,7 +603,7 @@
     const initialLang = localStorage.getItem("preferred-lang") || (navigator.language.toLowerCase().includes("zh") ? "zh" : "en");
     applyLanguage(initialLang);
 
-    document.querySelectorAll(".lang-control button").forEach((btn) => {
+    document.querySelectorAll(".lang-switch button").forEach((btn) => {
       btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
     });
 
