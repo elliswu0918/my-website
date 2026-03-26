@@ -1,314 +1,574 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="zh-Hant">
 <head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Personal academic website with bilingual content." />
+  <title>Academic Website</title>
+  <style>
+    :root {
+      --bg: #f6f4ef;
+      --paper: #fffdfa;
+      --ink: #2c2c2c;
+      --ink-soft: #66645e;
+      --line: #ddd8cd;
+      --primary: #667a69;
+      --secondary: #8a7868;
+      --radius: 12px;
+      --shadow: 0 6px 20px rgba(44, 44, 44, 0.06);
+      --container: 1120px;
+      --sans: "Inter", "Noto Sans TC", "PingFang TC", system-ui, sans-serif;
+      --serif: "Noto Serif TC", "Source Serif 4", Georgia, serif;
+    }
 
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-  <!-- slider stylesheet -->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: var(--sans);
+      line-height: 1.75;
+    }
 
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    a { color: inherit; text-decoration: none; }
 
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    .container {
+      width: min(92%, var(--container));
+      margin-inline: auto;
+    }
 
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+      background: color-mix(in srgb, var(--bg) 90%, white);
+    }
+
+    .header-row {
+      min-height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 10px 0;
+    }
+
+    .site-name {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      color: var(--ink-soft);
+      font-size: 0.94rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a { padding: 0.25rem 0.2rem; }
+    .nav-links a:hover { color: var(--ink); }
+
+    .lang-control {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--paper);
+      padding: 4px;
+      margin-left: 0.2rem;
+    }
+
+    .lang-control button {
+      border: 0;
+      background: transparent;
+      border-radius: 999px;
+      padding: 0.38rem 0.72rem;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      cursor: pointer;
+    }
+
+    .lang-control button.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    main { padding: 2rem 0 4rem; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 1.4rem;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.3rem;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.25;
+    }
+
+    .hero-subtitle {
+      color: var(--ink-soft);
+      margin-top: 0.35rem;
+      font-size: 1.02rem;
+    }
+
+    .hero-statement {
+      margin-top: 0.95rem;
+      font-size: 1.04rem;
+      max-width: 62ch;
+    }
+
+    .button-row {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.58rem 1.05rem;
+      font-size: 0.9rem;
+      background: #fff;
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .hero-meta ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--ink-soft);
+    }
+
+    section { margin-top: 1.2rem; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.8rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(1.35rem, 2.7vw, 1.95rem);
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .topic h3,
+    .teaching-item h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .topic p,
+    .teaching-item p,
+    .pub-item p,
+    .news-item p {
+      margin: 0.45rem 0 0;
+      color: var(--ink-soft);
+      font-size: 0.94rem;
+    }
+
+    .pub-item {
+      padding: 1rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .pub-item + .pub-item { margin-top: 0.55rem; }
+
+    .pub-links {
+      margin-top: 0.45rem;
+      display: flex;
+      gap: 0.8rem;
+      font-size: 0.86rem;
+      color: var(--secondary);
+    }
+
+    .news-list { display: grid; gap: 0.55rem; }
+
+    .news-item {
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      margin-top: 1.4rem;
+      padding-top: 1rem;
+    }
+
+    @media (max-width: 940px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      .grid-3,
+      .grid-2 { grid-template-columns: 1fr; }
+      .nav-links { font-size: 0.88rem; }
+    }
+  </style>
 </head>
-
 <body>
-
-  <div class="hero_area">
-    <!-- header section strats -->
-    <header class="header_section">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg custom_nav-container ">
-     
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="s-1"> </span>
-            <span class="s-2"> </span>
-            <span class="s-3"> </span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index1.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about1.html">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="service1.html">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="blog1.html">Materials</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="contact1.html">Contact</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          
-        </nav>
-      </div>
-    </header>
-    <!-- end header section -->
-    <!-- slider section -->
-    <section class=" slider_section ">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 ">
-            <div class="detail_box">
-              <h1>
-                Hsien-Cheng Wu<br>
-                <span>吳賢政</span>
-              </h1>
-              <p>
-                I am a research-driven business management student at National Taipei University of Technology (GPA 3.40/4.0),
-                focusing on data storytelling, service innovation, and human-centered AI. From multimodal emotion recognition
-                research to data-informed go-to-market strategies, I love translating complex insights into actionable decisions.
-              </p>
-              <ul class="trait-list">
-                <li>Resilient problem solver</li>
-                <li>Analytical storyteller</li>
-                <li>Innovative collaborator</li>
-              </ul>
-              <div class="cta-group">
-                <a href="#resume-overview" class="btn-primary">
-                  Explore My Resume
-                </a>
-                <a href="contact.html" class="btn-secondary">
-                  Let’s Collaborate
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-5 col-md-6 offset-lg-1">
-            <div class="img_content">
-              <div class="img_container">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <div class="img-box">
-                        <img src="images/My photo.jpg" alt="">
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="img-box">
-                        <img src="images/My photo 2.jpg" alt="">
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="img-box">
-                        <img src="images/My photo 1.jpg" alt="">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
-
-          </div>
+  <header class="site-header">
+    <div class="container header-row">
+      <div class="site-name" id="siteName">{{Your Name}}</div>
+      <nav class="nav-links">
+        <a href="#home" data-i18n="nav_home"></a>
+        <a href="#research" data-i18n="nav_research"></a>
+        <a href="#publications" data-i18n="nav_publications"></a>
+        <a href="#teaching" data-i18n="nav_teaching"></a>
+        <a href="#news" data-i18n="nav_news"></a>
+        <a href="#contact" data-i18n="nav_contact"></a>
+        <div class="lang-control" aria-label="language switch">
+          <button type="button" data-lang="zh">中文</button>
+          <button type="button" data-lang="en">EN</button>
         </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" id="home">
+      <article class="card">
+        <h1 id="heroName">{{Your Name}}</h1>
+        <p class="hero-subtitle" id="heroTitle"></p>
+        <p class="hero-statement" id="heroStatement"></p>
+        <div class="button-row">
+          <a class="btn primary" href="#publications" data-i18n="cta_publications"></a>
+          <a class="btn" href="#" data-i18n="cta_cv"></a>
+          <a class="btn" href="#contact" data-i18n="cta_contact"></a>
+        </div>
+      </article>
+      <aside class="card hero-meta">
+        <h2 data-i18n="meta_title"></h2>
+        <ul>
+          <li id="meta1"></li>
+          <li id="meta2"></li>
+          <li id="meta3"></li>
+          <li id="meta4"></li>
+        </ul>
+      </aside>
+    </section>
+
+    <section id="research">
+      <div class="section-head">
+        <h2 data-i18n="research_title"></h2>
+        <p data-i18n="research_subtitle"></p>
+      </div>
+      <div class="grid-3">
+        <article class="card topic">
+          <h3 id="topic1"></h3>
+          <p id="topic1_desc"></p>
+        </article>
+        <article class="card topic">
+          <h3 id="topic2"></h3>
+          <p id="topic2_desc"></p>
+        </article>
+        <article class="card topic">
+          <h3 id="topic3"></h3>
+          <p id="topic3_desc"></p>
+        </article>
       </div>
     </section>
-    <!-- end slider section -->
-  </div>
 
-
-  <section class="experience_highlight">
-    <div class="container highlight_wrapper">
-      <div class="highlight_media">
-        <img src="images/S__73515014.jpg" alt="LINE Taiwan Limited internship highlight illustration" />
+    <section id="publications" class="card">
+      <div class="section-head">
+        <h2 data-i18n="publications_title"></h2>
+        <p data-i18n="publications_subtitle"></p>
       </div>
-      <div class="highlight_content">
-        <span class="highlight_tag_green">Latest Internship</span>
-        <h2>LINE Taiwan Limited · Data &amp; Operation Intern</h2>
-        <p>
-          During my internship at LINE Taiwan Limited, I analyzed Smart Channel push campaigns and created automated analytics
-          tools with Python, SQL, and Excel to help the team track performance in real time.
-        </p>
-        <p>
-          The reporting pipelines I built supported service owners with actionable weekly insights and sharpened the strategies
-          we deployed across LINE services. Partnering closely with product, marketing, and data teams gave me hands-on
-          experience with large-scale data operations, cross-functional collaboration, and data-informed decision making.
-        </p>
+      <article class="pub-item">
+        <strong id="pub1_title"></strong>
+        <p id="pub1_desc"></p>
+        <div class="pub-links"><a href="#">PDF</a><a href="#">DOI</a><a href="#">Code</a></div>
+      </article>
+      <article class="pub-item">
+        <strong id="pub2_title"></strong>
+        <p id="pub2_desc"></p>
+        <div class="pub-links"><a href="#">PDF</a><a href="#">DOI</a></div>
+      </article>
+      <article class="pub-item">
+        <strong id="pub3_title"></strong>
+        <p id="pub3_desc"></p>
+        <div class="pub-links"><a href="#">PDF</a><a href="#">Project</a></div>
+      </article>
+    </section>
+
+    <section id="teaching">
+      <div class="section-head">
+        <h2 data-i18n="teaching_title"></h2>
+        <p data-i18n="teaching_subtitle"></p>
       </div>
-    </div>
-  </section>
-
-<section class="news_highlight">
-  <div class="container highlight_wrapper">
-    <div class="highlight_media1">
-      <img src="images/AZ.jpg" alt="Project iDEA 2025 - AstraZeneca Award Photo" />
-    </div>
-    <div class="highlight_content">
-      <span class="highlight_tag_red">New</span>
-      <h2>Project iDEA 2025 · AstraZeneca</h2>
-      <p><strong>Top 8 Finalist in Taiwan</strong></p>
-      <p>
-        Our team advanced to the Top 8 among more than 100 teams in the Taiwan region.
-        Following the competition, we collaborated with the <strong>NF1 Foundation</strong> to launch
-        a children’s art and fashion event. Through painting and runway showcases, children transformed
-        the life stories of NF1 patients into creative expressions, turning empathy into action.
-      </p>
-      <p>
-        This experience showcased my abilities in <strong>social impact project planning</strong> and
-        <strong>cross-disciplinary collaboration</strong>, and deepened my understanding of how
-        <strong>digital health and public advocacy</strong> can work together to create positive social value.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-  <!-- service section -->
-  <section id="resume-overview" class="service_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          My background
-        </h2>
+      <div class="grid-2">
+        <article class="card teaching-item">
+          <h3 id="teach1"></h3>
+          <p id="teach1_desc"></p>
+        </article>
+        <article class="card teaching-item">
+          <h3 id="teach2"></h3>
+          <p id="teach2_desc"></p>
+        </article>
       </div>
+    </section>
 
-      <div class="three-columns">
-        <section id="profile-spotlight">
-          <h2>Profile</h2>
-          <div class="resume-item">
-            <h3>National Taipei University of Technology</h3>
-            <p>B.B.A. in Business Management &amp; Service Science Program · GPA 3.40/4.0 (76/100)</p>
-            <p>Student researcher passionate about human-centered AI, sustainability-focused innovation, and communicating insights across business and engineering teams.</p>
-          </div>
-          <div class="resume-item">
-            <h3>Values in Action</h3>
-            <ul class="resume-list">
-              <li><strong>Resilient:</strong> Lead cross-functional teams in hackathons and national competitions under tight timelines.</li>
-              <li><strong>Analytical:</strong> Transform raw data into narratives that shape strategy, dashboards, and product roadmaps.</li>
-              <li><strong>Innovative:</strong> Prototype solutions that integrate AI, service design, and SDGs-driven impact.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section id="research">
-          <h2>Research Highlights</h2>
-          <div class="resume-item">
-            <h3>NSTC Undergraduate Research Program</h3>
-            <p><em>Integrative Deep Learning Models for Emotion Recognition</em></p>
-            <ul class="resume-list">
-              <li>Built a multimodal corpus (speech, text diaries, EEG) and fine-tuned transformers for Mandarin emotion detection.</li>
-              <li>Deployed BERTopic-driven insights to bridge qualitative annotations with quantitative model performance.</li>
-              <li>Coordinated interdisciplinary advisors and student researchers; manuscript under peer review.</li>
-            </ul>
-          </div>
-          <div class="resume-item">
-            <h3>Healthcare Text Mining</h3>
-            <p><em>Predicting ICU Heart Failure Outcomes with BERTopic &amp; Machine Learning</em></p>
-            <ul class="resume-list">
-              <li>Engineered Python &amp; SQL pipeline combining EHR data and clinical notes to surface high-risk patient journeys.</li>
-              <li>Presented findings at the 2024 Management Innovation Conference, aligning recommendations with SDGs 3 &amp; 9.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section id="honors">
-          <h2>Honors &amp; Awards</h2>
-          <div class="resume-item">
-            <h3>Project IDEA 2025 – AstraZeneca</h3>
-            <p>One of the top innovation teams tackling chronic disease patient journeys; delivered a 120-page transformation roadmap and patient-centric KPI system.</p>
-          </div>
-          <div class="resume-item">
-            <h3>2025 Living Lab Project Awards</h3>
-            <p>Recognized for creating an AI-enabled community care service that integrates sustainability metrics with social impact measurements.</p>
-          </div>
-          <div class="resume-item">
-            <h3>22nd ATCC National Business Case Competition</h3>
-            <p>Advanced to the national finals with a data-driven loyalty and ESG strategy for a leading Taiwanese brand.</p>
-          </div>
-          <div class="resume-item">
-            <h3>National Innovation Project Competition</h3>
-            <p>Won first place for developing creative, interdisciplinary solutions sponsored by Taiwan’s Ministry of Education.</p>
-          </div>
-        </section>
+    <section id="news" class="card">
+      <div class="section-head">
+        <h2 data-i18n="news_title"></h2>
+        <p data-i18n="news_subtitle"></p>
       </div>
-
-     
-  <!-- end service section -->
-
- 
-
-
-  <!-- contact section -->
-
-  <p>
-
-
-  </p>
-  <ul class="social-links">
-    <li><a href="https://www.instagram.com/elliswu0918" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
-    <li><a href="https://www.linkedin.com/in/hsien-cheng-ellis-wu-6a1044297/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
-    <li><a href="https://github.com/elliswu0918" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a></li>
-    <li><a href="https://www.youtube.com/@elliswu0918" target="_blank"><i class="fa-brands fa-youtube"></i> YouTube</a></li>
-  </ul>
-  
-  
-
-  <!-- end contact section -->
-
-
-  <!-- info section -->
-
- 
-
-  <!-- end info section -->
-
-  <!-- footer section -->
-  <footer class="container-fluid footer_section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-7 col-md-9 mx-auto">
-          <p>
-            &copy; Copyright 2024 hsien-cheng Wu By
-            <a href="https://html.design/">Free Html Templates.</a>
-            <a>Hosted by </a>
-            <a href="https://html.design/">GitHub Pages.</a>
-          </p>
-        </div>
+      <div class="news-list">
+        <article class="news-item" id="news1"></article>
+        <article class="news-item" id="news2"></article>
+        <article class="news-item" id="news3"></article>
       </div>
-    </div>
-  </footer>
-  <!-- footer section -->
+    </section>
 
+    <footer id="contact">
+      <div class="contact-row">
+        <div id="contactLine"></div>
+        <div id="linksLine"></div>
+      </div>
+      <div class="contact-row">
+        <div>© <span id="year"></span> <span id="copyrightName">{{Your Name}}</span></div>
+      </div>
+    </footer>
+  </main>
 
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.js"></script>
+  <script>
+    const translations = {
+      zh: {
+        html_lang: "zh-Hant",
+        page_title: "學術個人網站",
+        site_name: "{{Your Name}}",
+        nav_home: "首頁",
+        nav_research: "研究",
+        nav_publications: "論文",
+        nav_teaching: "教學",
+        nav_news: "最新消息",
+        nav_contact: "聯絡",
+        hero_name: "{{Your Name}}",
+        hero_title: "助理教授候選人｜{{Department}}｜{{University}}",
+        hero_statement: "我聚焦於資料驅動決策、人機互動與服務創新，重視研究的可解釋性、跨域整合能力與社會影響。",
+        cta_publications: "查看論文",
+        cta_cv: "下載 CV",
+        cta_contact: "聯絡我",
+        meta_title: "學術重點",
+        meta1: "研究方法：定量分析、實驗設計、使用者研究",
+        meta2: "合作領域：AI、數位平台、公共與商業服務",
+        meta3: "關鍵字：Human-AI, Explainability, Service Science",
+        meta4: "現況：開放跨領域研究合作與學生指導",
+        research_title: "研究興趣",
+        research_subtitle: "聚焦理論深度與實務價值並重",
+        topic1: "資料驅動決策",
+        topic1_desc: "結合機器學習與統計推論，協助在不確定情境下做出更可靠的策略判斷。",
+        topic2: "人機互動與可解釋 AI",
+        topic2_desc: "研究 AI 介面如何提升信任、可理解性與實際使用效益。",
+        topic3: "服務創新與社會影響",
+        topic3_desc: "探討以人為本的服務設計如何改善公共價值與永續成果。",
+        publications_title: "代表性論文",
+        publications_subtitle: "完整列表可放置於 Publications 頁面",
+        pub1_title: "Multimodal Signals for Human-Centered Decision Support (2025)",
+        pub1_desc: "Chen, Y., {{Your Name}}, Lin, H. Journal of Service Analytics.",
+        pub2_title: "Explainable Recommender Systems in Platform Contexts (2024)",
+        pub2_desc: "{{Your Name}}, Wang, C. IEEE Access.",
+        pub3_title: "Interface Transparency and Trust in Human-AI Collaboration (2023)",
+        pub3_desc: "Hsu, P., {{Your Name}}. CHI Workshop.",
+        teaching_title: "教學與學術服務",
+        teaching_subtitle: "培育研究能力與跨域問題解決能力",
+        teach1: "教學領域",
+        teach1_desc: "資料分析、研究方法、AI 與管理決策、服務設計。",
+        teach2: "學術服務",
+        teach2_desc: "審稿、學生指導、研究工作坊與跨校合作計畫。",
+        news_title: "最新消息",
+        news_subtitle: "依時間倒序更新",
+        news1: "[2026.03] 論文入選 International Conference on Service Systems。",
+        news2: "[2026.01] 受邀於 Data & Society Seminar 進行專題演講。",
+        news3: "[2025.11] 啟動跨校 AI 與公共服務研究合作。",
+        contact_line: "聯絡：your.email@university.edu",
+        links_line: "ORCID ｜ Google Scholar ｜ GitHub ｜ {{Institution}}"
+      },
+      en: {
+        html_lang: "en",
+        page_title: "Academic Website",
+        site_name: "{{Your Name}}",
+        nav_home: "Home",
+        nav_research: "Research",
+        nav_publications: "Publications",
+        nav_teaching: "Teaching",
+        nav_news: "News",
+        nav_contact: "Contact",
+        hero_name: "{{Your Name}}",
+        hero_title: "Assistant Professor Candidate | {{Department}} | {{University}}",
+        hero_statement: "My work focuses on data-driven decision-making, human-AI interaction, and service innovation, with an emphasis on explainability, interdisciplinary integration, and social impact.",
+        cta_publications: "View Publications",
+        cta_cv: "Download CV",
+        cta_contact: "Contact",
+        meta_title: "Academic Focus",
+        meta1: "Methods: quantitative modeling, experiments, user studies",
+        meta2: "Domains: AI, digital platforms, public and business services",
+        meta3: "Keywords: Human-AI, Explainability, Service Science",
+        meta4: "Open to interdisciplinary research collaborations",
+        research_title: "Research Interests",
+        research_subtitle: "Balancing theoretical depth and practical impact",
+        topic1: "Data-Driven Decision-Making",
+        topic1_desc: "Integrating machine learning and statistical inference for robust strategy under uncertainty.",
+        topic2: "Human-AI Interaction & Explainability",
+        topic2_desc: "Studying how AI interfaces improve trust, transparency, and real-world effectiveness.",
+        topic3: "Service Innovation & Social Impact",
+        topic3_desc: "Examining how human-centered service design can generate public value and sustainability outcomes.",
+        publications_title: "Selected Publications",
+        publications_subtitle: "A full list can be added on a dedicated Publications page",
+        pub1_title: "Multimodal Signals for Human-Centered Decision Support (2025)",
+        pub1_desc: "Chen, Y., {{Your Name}}, Lin, H. Journal of Service Analytics.",
+        pub2_title: "Explainable Recommender Systems in Platform Contexts (2024)",
+        pub2_desc: "{{Your Name}}, Wang, C. IEEE Access.",
+        pub3_title: "Interface Transparency and Trust in Human-AI Collaboration (2023)",
+        pub3_desc: "Hsu, P., {{Your Name}}. CHI Workshop.",
+        teaching_title: "Teaching & Academic Service",
+        teaching_subtitle: "Building research capability and cross-domain problem-solving",
+        teach1: "Teaching Areas",
+        teach1_desc: "Data analytics, research methods, AI for management, and service design.",
+        teach2: "Academic Service",
+        teach2_desc: "Peer reviewing, student mentoring, workshops, and cross-university projects.",
+        news_title: "News",
+        news_subtitle: "Updated in reverse chronological order",
+        news1: "[Mar 2026] Paper accepted to the International Conference on Service Systems.",
+        news2: "[Jan 2026] Delivered an invited talk at the Data & Society Seminar.",
+        news3: "[Nov 2025] Started a cross-university project on AI and public services.",
+        contact_line: "Contact: your.email@university.edu",
+        links_line: "ORCID | Google Scholar | GitHub | {{Institution}}"
+      }
+    };
 
+    const textIds = [
+      "heroName", "heroTitle", "heroStatement", "meta1", "meta2", "meta3", "meta4", "topic1", "topic1_desc",
+      "topic2", "topic2_desc", "topic3", "topic3_desc", "pub1_title", "pub1_desc", "pub2_title", "pub2_desc",
+      "pub3_title", "pub3_desc", "teach1", "teach1_desc", "teach2", "teach2_desc", "news1", "news2", "news3",
+      "contactLine", "linksLine", "siteName", "copyrightName"
+    ];
+
+    function applyLanguage(lang) {
+      const t = translations[lang] || translations.zh;
+      document.documentElement.lang = t.html_lang;
+      document.title = t.page_title;
+
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.dataset.i18n;
+        if (t[key]) el.textContent = t[key];
+      });
+
+      const map = {
+        heroName: "hero_name",
+        heroTitle: "hero_title",
+        heroStatement: "hero_statement",
+        meta1: "meta1",
+        meta2: "meta2",
+        meta3: "meta3",
+        meta4: "meta4",
+        topic1: "topic1",
+        topic1_desc: "topic1_desc",
+        topic2: "topic2",
+        topic2_desc: "topic2_desc",
+        topic3: "topic3",
+        topic3_desc: "topic3_desc",
+        pub1_title: "pub1_title",
+        pub1_desc: "pub1_desc",
+        pub2_title: "pub2_title",
+        pub2_desc: "pub2_desc",
+        pub3_title: "pub3_title",
+        pub3_desc: "pub3_desc",
+        teach1: "teach1",
+        teach1_desc: "teach1_desc",
+        teach2: "teach2",
+        teach2_desc: "teach2_desc",
+        news1: "news1",
+        news2: "news2",
+        news3: "news3",
+        contactLine: "contact_line",
+        linksLine: "links_line",
+        siteName: "site_name",
+        copyrightName: "site_name"
+      };
+
+      textIds.forEach((id) => {
+        const el = document.getElementById(id);
+        const key = map[id];
+        if (el && t[key]) el.textContent = t[key];
+      });
+
+      localStorage.setItem("preferred-lang", lang);
+      document.querySelectorAll(".lang-control button").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+    }
+
+    const initialLang = localStorage.getItem("preferred-lang") || (navigator.language.toLowerCase().includes("zh") ? "zh" : "en");
+    applyLanguage(initialLang);
+
+    document.querySelectorAll(".lang-control button").forEach((btn) => {
+      btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
-
 </html>
