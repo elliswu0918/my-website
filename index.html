@@ -1,314 +1,613 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="zh-Hant">
 <head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Minimal Japanese-inspired academic personal website." />
+  <title>Academic Portfolio</title>
+  <style>
+    :root {
+      --bg: #f3f0e8;
+      --panel: #fcfbf8;
+      --ink: #1f1f1f;
+      --muted: #666257;
+      --line: #d9d2c3;
+      --sage: #657564;
+      --brown: #7c6a59;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(31, 31, 31, 0.06);
+      --container: 1180px;
+      --serif: "Noto Serif TC", "Noto Serif JP", "Times New Roman", serif;
+      --sans: "Inter", "Noto Sans TC", "Noto Sans JP", system-ui, sans-serif;
+    }
 
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-  <!-- slider stylesheet -->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.8;
+      letter-spacing: 0.01em;
+    }
 
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    a { color: inherit; text-decoration: none; }
 
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    .container {
+      width: min(92%, var(--container));
+      margin: 0 auto;
+    }
 
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+      background: color-mix(in srgb, var(--bg) 88%, #fff);
+    }
+
+    .topbar-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 0.55rem 0;
+    }
+
+    .brand {
+      font-family: var(--serif);
+      font-size: 1.12rem;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: baseline;
+      gap: 0.7rem;
+    }
+
+    .brand small {
+      font-size: 0.76rem;
+      color: var(--muted);
+      font-family: var(--sans);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 0.95rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+      font-size: 0.93rem;
+    }
+
+    .nav a:hover { color: var(--ink); }
+
+    .lang-switch {
+      display: inline-flex;
+      gap: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px;
+      background: var(--panel);
+    }
+
+    .lang-switch button {
+      border: 0;
+      background: transparent;
+      border-radius: 999px;
+      padding: 0.34rem 0.72rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .lang-switch button.active {
+      background: var(--sage);
+      color: #fff;
+    }
+
+    .hero {
+      margin-top: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #faf8f3 0%, #f5f2ea 60%, #f0ece2 100%);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      min-height: 440px;
+    }
+
+    .hero-content {
+      padding: clamp(1.3rem, 3.5vw, 3rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .jp-mark {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 7vw, 5rem);
+      line-height: 1;
+      letter-spacing: 0.08em;
+      color: color-mix(in srgb, var(--ink) 80%, transparent);
+      margin: 0;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 4.4vw, 3.5rem);
+      line-height: 1.25;
+      max-width: 16ch;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 0.3rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 0.56rem 1rem;
+      font-size: 0.89rem;
+    }
+
+    .btn.primary {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #fff;
+    }
+
+    .hero-side {
+      border-left: 1px solid var(--line);
+      background: repeating-linear-gradient(
+        0deg,
+        #f6f2e8,
+        #f6f2e8 24px,
+        #f2eee4 24px,
+        #f2eee4 48px
+      );
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+    }
+
+    .hero-note {
+      background: rgba(255,255,255,0.85);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1rem;
+      max-width: 260px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    section { margin-top: 1rem; }
+
+    .section-wrap {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.1rem;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.8rem;
+      margin-bottom: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2.8vw, 2rem);
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .tile {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.9rem;
+      background: #fff;
+    }
+
+    .tile h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .tile p {
+      margin: 0.45rem 0 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 0.8rem;
+    }
+
+    .year-tag {
+      font-family: var(--serif);
+      color: var(--brown);
+      font-size: 1.1rem;
+      line-height: 1.2;
+    }
+
+    .timeline-item strong { font-size: 0.98rem; }
+
+    .timeline-item p {
+      margin: 0.3rem 0 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .pub-links {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 0.45rem;
+      font-size: 0.84rem;
+      color: var(--brown);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .news-list { display: grid; gap: 0.55rem; }
+
+    .news-item {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 0.75rem 0.9rem;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    footer {
+      margin: 1rem 0 2.2rem;
+      border-top: 1px solid var(--line);
+      padding-top: 0.95rem;
+      color: var(--muted);
+      font-size: 0.91rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-side { border-left: 0; border-top: 1px solid var(--line); }
+      .research-grid { grid-template-columns: 1fr 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .research-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; }
+      .year-tag { font-size: 0.95rem; }
+    }
+  </style>
 </head>
-
 <body>
-
-  <div class="hero_area">
-    <!-- header section strats -->
-    <header class="header_section">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg custom_nav-container ">
-     
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="s-1"> </span>
-            <span class="s-2"> </span>
-            <span class="s-3"> </span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index1.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about1.html">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="service1.html">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="blog1.html">Materials</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="contact1.html">Contact</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          
-        </nav>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <span id="brandName">{{Your Name}}</span>
+        <small data-i18n="brand_sub"></small>
       </div>
-    </header>
-    <!-- end header section -->
-    <!-- slider section -->
-    <section class=" slider_section ">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 ">
-            <div class="detail_box">
-              <h1>
-                Hsien-Cheng Wu<br>
-                <span>吳賢政</span>
-              </h1>
-              <p>
-                I am a research-driven business management student at National Taipei University of Technology (GPA 3.40/4.0),
-                focusing on data storytelling, service innovation, and human-centered AI. From multimodal emotion recognition
-                research to data-informed go-to-market strategies, I love translating complex insights into actionable decisions.
-              </p>
-              <ul class="trait-list">
-                <li>Resilient problem solver</li>
-                <li>Analytical storyteller</li>
-                <li>Innovative collaborator</li>
-              </ul>
-              <div class="cta-group">
-                <a href="#resume-overview" class="btn-primary">
-                  Explore My Resume
-                </a>
-                <a href="contact.html" class="btn-secondary">
-                  Let’s Collaborate
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-5 col-md-6 offset-lg-1">
-            <div class="img_content">
-              <div class="img_container">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <div class="img-box">
-                        <img src="images/My photo.jpg" alt="">
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="img-box">
-                        <img src="images/My photo 2.jpg" alt="">
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="img-box">
-                        <img src="images/My photo 1.jpg" alt="">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
+      <nav class="nav">
+        <a href="#home" data-i18n="nav_home"></a>
+        <a href="#research" data-i18n="nav_research"></a>
+        <a href="#publications" data-i18n="nav_publications"></a>
+        <a href="#teaching" data-i18n="nav_teaching"></a>
+        <a href="#news" data-i18n="nav_news"></a>
+        <a href="#contact" data-i18n="nav_contact"></a>
+        <div class="lang-switch" aria-label="language switch">
+          <button type="button" data-lang="zh">中文</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+      </nav>
+    </div>
+  </header>
 
+  <main class="container" id="home">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <p class="jp-mark" id="heroKanji">研究</p>
+          <h1 id="heroName">{{Your Name}}</h1>
+          <p id="heroIntro"></p>
+          <div class="hero-actions">
+            <a href="#publications" class="btn primary" data-i18n="cta_pubs"></a>
+            <a href="#contact" class="btn" data-i18n="cta_contact"></a>
+            <a href="#" class="btn" data-i18n="cta_cv"></a>
           </div>
         </div>
+        <aside class="hero-side">
+          <div class="hero-note" id="heroNote"></div>
+        </aside>
       </div>
     </section>
-    <!-- end slider section -->
-  </div>
 
-
-  <section class="experience_highlight">
-    <div class="container highlight_wrapper">
-      <div class="highlight_media">
-        <img src="images/S__73515014.jpg" alt="LINE Taiwan Limited internship highlight illustration" />
+    <section id="research" class="section-wrap">
+      <div class="section-head">
+        <h2 data-i18n="research_title"></h2>
+        <p data-i18n="research_sub"></p>
       </div>
-      <div class="highlight_content">
-        <span class="highlight_tag_green">Latest Internship</span>
-        <h2>LINE Taiwan Limited · Data &amp; Operation Intern</h2>
-        <p>
-          During my internship at LINE Taiwan Limited, I analyzed Smart Channel push campaigns and created automated analytics
-          tools with Python, SQL, and Excel to help the team track performance in real time.
-        </p>
-        <p>
-          The reporting pipelines I built supported service owners with actionable weekly insights and sharpened the strategies
-          we deployed across LINE services. Partnering closely with product, marketing, and data teams gave me hands-on
-          experience with large-scale data operations, cross-functional collaboration, and data-informed decision making.
-        </p>
+      <div class="research-grid">
+        <article class="tile">
+          <h3 id="r1t"></h3>
+          <p id="r1d"></p>
+        </article>
+        <article class="tile">
+          <h3 id="r2t"></h3>
+          <p id="r2d"></p>
+        </article>
+        <article class="tile">
+          <h3 id="r3t"></h3>
+          <p id="r3d"></p>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-<section class="news_highlight">
-  <div class="container highlight_wrapper">
-    <div class="highlight_media1">
-      <img src="images/AZ.jpg" alt="Project iDEA 2025 - AstraZeneca Award Photo" />
-    </div>
-    <div class="highlight_content">
-      <span class="highlight_tag_red">New</span>
-      <h2>Project iDEA 2025 · AstraZeneca</h2>
-      <p><strong>Top 8 Finalist in Taiwan</strong></p>
-      <p>
-        Our team advanced to the Top 8 among more than 100 teams in the Taiwan region.
-        Following the competition, we collaborated with the <strong>NF1 Foundation</strong> to launch
-        a children’s art and fashion event. Through painting and runway showcases, children transformed
-        the life stories of NF1 patients into creative expressions, turning empathy into action.
-      </p>
-      <p>
-        This experience showcased my abilities in <strong>social impact project planning</strong> and
-        <strong>cross-disciplinary collaboration</strong>, and deepened my understanding of how
-        <strong>digital health and public advocacy</strong> can work together to create positive social value.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-  <!-- service section -->
-  <section id="resume-overview" class="service_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          My background
-        </h2>
+    <section id="publications" class="section-wrap">
+      <div class="section-head">
+        <h2 data-i18n="pub_title"></h2>
+        <p data-i18n="pub_sub"></p>
       </div>
-
-      <div class="three-columns">
-        <section id="profile-spotlight">
-          <h2>Profile</h2>
-          <div class="resume-item">
-            <h3>National Taipei University of Technology</h3>
-            <p>B.B.A. in Business Management &amp; Service Science Program · GPA 3.40/4.0 (76/100)</p>
-            <p>Student researcher passionate about human-centered AI, sustainability-focused innovation, and communicating insights across business and engineering teams.</p>
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="year-tag">2025</div>
+          <div>
+            <strong id="p1t"></strong>
+            <p id="p1d"></p>
+            <div class="pub-links"><a href="#">PDF</a><a href="#">DOI</a><a href="#">Code</a></div>
           </div>
-          <div class="resume-item">
-            <h3>Values in Action</h3>
-            <ul class="resume-list">
-              <li><strong>Resilient:</strong> Lead cross-functional teams in hackathons and national competitions under tight timelines.</li>
-              <li><strong>Analytical:</strong> Transform raw data into narratives that shape strategy, dashboards, and product roadmaps.</li>
-              <li><strong>Innovative:</strong> Prototype solutions that integrate AI, service design, and SDGs-driven impact.</li>
-            </ul>
+        </article>
+        <article class="timeline-item">
+          <div class="year-tag">2024</div>
+          <div>
+            <strong id="p2t"></strong>
+            <p id="p2d"></p>
+            <div class="pub-links"><a href="#">PDF</a><a href="#">DOI</a></div>
           </div>
-        </section>
-
-        <section id="research">
-          <h2>Research Highlights</h2>
-          <div class="resume-item">
-            <h3>NSTC Undergraduate Research Program</h3>
-            <p><em>Integrative Deep Learning Models for Emotion Recognition</em></p>
-            <ul class="resume-list">
-              <li>Built a multimodal corpus (speech, text diaries, EEG) and fine-tuned transformers for Mandarin emotion detection.</li>
-              <li>Deployed BERTopic-driven insights to bridge qualitative annotations with quantitative model performance.</li>
-              <li>Coordinated interdisciplinary advisors and student researchers; manuscript under peer review.</li>
-            </ul>
+        </article>
+        <article class="timeline-item">
+          <div class="year-tag">2023</div>
+          <div>
+            <strong id="p3t"></strong>
+            <p id="p3d"></p>
+            <div class="pub-links"><a href="#">PDF</a><a href="#">Project</a></div>
           </div>
-          <div class="resume-item">
-            <h3>Healthcare Text Mining</h3>
-            <p><em>Predicting ICU Heart Failure Outcomes with BERTopic &amp; Machine Learning</em></p>
-            <ul class="resume-list">
-              <li>Engineered Python &amp; SQL pipeline combining EHR data and clinical notes to surface high-risk patient journeys.</li>
-              <li>Presented findings at the 2024 Management Innovation Conference, aligning recommendations with SDGs 3 &amp; 9.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section id="honors">
-          <h2>Honors &amp; Awards</h2>
-          <div class="resume-item">
-            <h3>Project IDEA 2025 – AstraZeneca</h3>
-            <p>One of the top innovation teams tackling chronic disease patient journeys; delivered a 120-page transformation roadmap and patient-centric KPI system.</p>
-          </div>
-          <div class="resume-item">
-            <h3>2025 Living Lab Project Awards</h3>
-            <p>Recognized for creating an AI-enabled community care service that integrates sustainability metrics with social impact measurements.</p>
-          </div>
-          <div class="resume-item">
-            <h3>22nd ATCC National Business Case Competition</h3>
-            <p>Advanced to the national finals with a data-driven loyalty and ESG strategy for a leading Taiwanese brand.</p>
-          </div>
-          <div class="resume-item">
-            <h3>National Innovation Project Competition</h3>
-            <p>Won first place for developing creative, interdisciplinary solutions sponsored by Taiwan’s Ministry of Education.</p>
-          </div>
-        </section>
+        </article>
       </div>
+    </section>
 
-     
-  <!-- end service section -->
-
- 
-
-
-  <!-- contact section -->
-
-  <p>
-
-
-  </p>
-  <ul class="social-links">
-    <li><a href="https://www.instagram.com/elliswu0918" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
-    <li><a href="https://www.linkedin.com/in/hsien-cheng-ellis-wu-6a1044297/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
-    <li><a href="https://github.com/elliswu0918" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a></li>
-    <li><a href="https://www.youtube.com/@elliswu0918" target="_blank"><i class="fa-brands fa-youtube"></i> YouTube</a></li>
-  </ul>
-  
-  
-
-  <!-- end contact section -->
-
-
-  <!-- info section -->
-
- 
-
-  <!-- end info section -->
-
-  <!-- footer section -->
-  <footer class="container-fluid footer_section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-7 col-md-9 mx-auto">
-          <p>
-            &copy; Copyright 2024 hsien-cheng Wu By
-            <a href="https://html.design/">Free Html Templates.</a>
-            <a>Hosted by </a>
-            <a href="https://html.design/">GitHub Pages.</a>
-          </p>
+    <section class="two-col">
+      <section id="teaching" class="section-wrap">
+        <div class="section-head">
+          <h2 data-i18n="teach_title"></h2>
         </div>
-      </div>
-    </div>
-  </footer>
-  <!-- footer section -->
+        <article class="tile">
+          <h3 id="t1t"></h3>
+          <p id="t1d"></p>
+        </article>
+        <article class="tile" style="margin-top: 0.7rem;">
+          <h3 id="t2t"></h3>
+          <p id="t2d"></p>
+        </article>
+      </section>
 
+      <section id="news" class="section-wrap">
+        <div class="section-head">
+          <h2 data-i18n="news_title"></h2>
+        </div>
+        <div class="news-list">
+          <article class="news-item" id="n1"></article>
+          <article class="news-item" id="n2"></article>
+          <article class="news-item" id="n3"></article>
+        </div>
+      </section>
+    </section>
 
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.js"></script>
+    <footer id="contact">
+      <div id="contactLine"></div>
+      <div id="footerLine"></div>
+      <div>© <span id="year"></span> <span id="copyrightName">{{Your Name}}</span></div>
+    </footer>
+  </main>
 
+  <script>
+    const i18n = {
+      zh: {
+        html_lang: "zh-Hant",
+        page_title: "學術個人網站",
+        brand_name: "{{Your Name}}",
+        brand_sub: "ACADEMIC PORTFOLIO",
+        nav_home: "首頁",
+        nav_research: "研究",
+        nav_publications: "論文",
+        nav_teaching: "教學",
+        nav_news: "消息",
+        nav_contact: "聯絡",
+        hero_kanji: "研究",
+        hero_name: "{{Your Name}}",
+        hero_intro: "{{Department}}｜{{University}}。我的研究關注人機互動、資料驅動決策與服務創新，重視方法的可解釋性與社會實作價值。",
+        hero_note: "以「留白、秩序、可信」為核心，建立兼具學術專業與日系簡約質感的個人研究網站。",
+        cta_pubs: "查看論文",
+        cta_contact: "聯絡我",
+        cta_cv: "下載 CV",
+        research_title: "研究方向",
+        research_sub: "Research Areas",
+        r1t: "人機互動與可解釋 AI",
+        r1d: "探討介面透明度、解釋策略與使用者信任之間的關聯。",
+        r2t: "資料驅動決策",
+        r2d: "結合統計與機器學習方法，支援高不確定情境下的決策品質。",
+        r3t: "服務創新與社會影響",
+        r3d: "研究數位服務如何兼顧效率、公平與永續價值。",
+        pub_title: "代表性論文",
+        pub_sub: "Selected Publications",
+        p1t: "Multimodal Signals for Human-Centered Decision Support",
+        p1d: "Chen, Y., {{Your Name}}, Lin, H. Journal of Service Analytics.",
+        p2t: "Explainable Recommender Systems in Platform Contexts",
+        p2d: "{{Your Name}}, Wang, C. IEEE Access.",
+        p3t: "Interface Transparency and Decision Trust",
+        p3d: "Hsu, P., {{Your Name}}. CHI Workshop.",
+        teach_title: "教學與服務",
+        t1t: "教學領域",
+        t1d: "資料分析、研究方法、AI 與管理決策、服務設計。",
+        t2t: "學術服務",
+        t2d: "審稿、學生指導、跨校合作、研究社群經營。",
+        news_title: "最新消息",
+        n1: "[2026.03] 論文獲 International Conference on Service Systems 接收。",
+        n2: "[2026.01] 受邀於 Data & Society Seminar 進行演講。",
+        n3: "[2025.11] 啟動 AI 與公共服務跨域研究合作。",
+        contact_line: "聯絡：your.email@university.edu",
+        footer_line: "ORCID ｜ Google Scholar ｜ GitHub ｜ {{Institution}}"
+      },
+      en: {
+        html_lang: "en",
+        page_title: "Academic Portfolio",
+        brand_name: "{{Your Name}}",
+        brand_sub: "ACADEMIC PORTFOLIO",
+        nav_home: "Home",
+        nav_research: "Research",
+        nav_publications: "Publications",
+        nav_teaching: "Teaching",
+        nav_news: "News",
+        nav_contact: "Contact",
+        hero_kanji: "研究",
+        hero_name: "{{Your Name}}",
+        hero_intro: "{{Department}} | {{University}}. My research focuses on human-AI interaction, data-driven decision-making, and service innovation, with emphasis on explainability and societal impact.",
+        hero_note: "A minimal, structured, and credible web presence for academic communication.",
+        cta_pubs: "View Publications",
+        cta_contact: "Contact",
+        cta_cv: "Download CV",
+        research_title: "Research Areas",
+        research_sub: "Focused on theory, method, and impact",
+        r1t: "Human-AI Interaction & Explainability",
+        r1d: "Studying transparency design, explanation strategies, and user trust.",
+        r2t: "Data-Driven Decision-Making",
+        r2d: "Combining statistical and ML approaches for robust decisions under uncertainty.",
+        r3t: "Service Innovation & Social Impact",
+        r3d: "Exploring digital service systems balancing performance, equity, and sustainability.",
+        pub_title: "Selected Publications",
+        pub_sub: "Recent representative works",
+        p1t: "Multimodal Signals for Human-Centered Decision Support",
+        p1d: "Chen, Y., {{Your Name}}, Lin, H. Journal of Service Analytics.",
+        p2t: "Explainable Recommender Systems in Platform Contexts",
+        p2d: "{{Your Name}}, Wang, C. IEEE Access.",
+        p3t: "Interface Transparency and Decision Trust",
+        p3d: "Hsu, P., {{Your Name}}. CHI Workshop.",
+        teach_title: "Teaching & Service",
+        t1t: "Teaching Areas",
+        t1d: "Data analytics, research methods, AI for management, and service design.",
+        t2t: "Academic Service",
+        t2d: "Peer review, mentoring, cross-university projects, and research communities.",
+        news_title: "News",
+        n1: "[Mar 2026] Paper accepted to the International Conference on Service Systems.",
+        n2: "[Jan 2026] Invited talk at the Data & Society Seminar.",
+        n3: "[Nov 2025] Started a cross-disciplinary project on AI and public services.",
+        contact_line: "Contact: your.email@university.edu",
+        footer_line: "ORCID | Google Scholar | GitHub | {{Institution}}"
+      }
+    };
+
+    const mapping = {
+      brandName: "brand_name",
+      heroKanji: "hero_kanji",
+      heroName: "hero_name",
+      heroIntro: "hero_intro",
+      heroNote: "hero_note",
+      r1t: "r1t", r1d: "r1d", r2t: "r2t", r2d: "r2d", r3t: "r3t", r3d: "r3d",
+      p1t: "p1t", p1d: "p1d", p2t: "p2t", p2d: "p2d", p3t: "p3t", p3d: "p3d",
+      t1t: "t1t", t1d: "t1d", t2t: "t2t", t2d: "t2d",
+      n1: "n1", n2: "n2", n3: "n3",
+      contactLine: "contact_line",
+      footerLine: "footer_line",
+      copyrightName: "brand_name"
+    };
+
+    function applyLanguage(lang) {
+      const t = i18n[lang] || i18n.zh;
+      document.documentElement.lang = t.html_lang;
+      document.title = t.page_title;
+
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.dataset.i18n;
+        if (t[key]) el.textContent = t[key];
+      });
+
+      Object.entries(mapping).forEach(([id, key]) => {
+        const node = document.getElementById(id);
+        if (node && t[key]) node.textContent = t[key];
+      });
+
+      localStorage.setItem("preferred-lang", lang);
+      document.querySelectorAll(".lang-switch button").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+    }
+
+    const initialLang = localStorage.getItem("preferred-lang") || (navigator.language.toLowerCase().includes("zh") ? "zh" : "en");
+    applyLanguage(initialLang);
+
+    document.querySelectorAll(".lang-switch button").forEach((btn) => {
+      btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
-
 </html>
